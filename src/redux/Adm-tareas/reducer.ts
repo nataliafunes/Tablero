@@ -1,8 +1,7 @@
 import {
     SET_TASKS,
     ADD_TASKS,
-    REORDER,
-    DELETE_TASK,
+    REORDER,   
   } from '../actions';
   
   const INIT_STATE = {
@@ -22,7 +21,7 @@ import {
   
       data.map(function(item:any){
         const {text} = item;       
-        if(text == draggableId){         
+        if(text === draggableId){         
           item.estado = destination.droppableId;
         }        
         
@@ -34,7 +33,7 @@ import {
    
     let dataOrder = data || [];
   
-    if (source.droppableId != destination.droppableId){
+    if (source.droppableId !== destination.droppableId){
       dataOrder = changeEstado( destination,draggableId, data);      
     }
 
@@ -55,14 +54,6 @@ import {
   
   };
 
-  const Delete = (data:any, item:any)=>{  
-
-    const dataFiltrada =  data.filter((i:any) => i.text !== item);
-    
-   return dataFiltrada;
-};
-
-
   export default (state = INIT_STATE, action: any) => {
     switch (action.type) {
       case SET_TASKS:        
@@ -73,10 +64,7 @@ import {
       } 
       case REORDER:       
         const {source, destination , draggableId} = action.payload;
-        return { ...state,  dataFiltered: ReOrdenar(source, destination, draggableId, state.dataFiltered)};
-      case DELETE_TASK:
-        console.log(action.payload);
-        return { ...state};
+        return { ...state,  dataFiltered: ReOrdenar(source, destination, draggableId, state.dataFiltered)};      
       default:
         return { ...state };
     }

@@ -29,13 +29,13 @@ const ConteinerTasks= () => {
   return (
     <>
       <Row className="p-3">        
-          <DragDropContext onDragEnd = {handleOnDragEnd} >
-            {estados.map((item, index) => {               
-              const {descripcion} = item ||{};   
-               return (                
-                  <Col className="p-2">                 
-                  <h1>{descripcion}</h1>
-                  <Droppable index ={index} droppableId={descripcion} className="task-container">
+        <DragDropContext onDragEnd = {handleOnDragEnd} >
+          {estados.map((item, index) => {               
+            const {descripcion} = item ||{};   
+            return (                
+              <Col className="p-2">                 
+                <h1>{descripcion}</h1>
+                <Droppable index ={index} droppableId={descripcion} className="task-container">
                     {(droppableProvided) => (
                       <ul
                         {...droppableProvided.droppableProps}
@@ -45,46 +45,33 @@ const ConteinerTasks= () => {
                         {tareas.filter(s => s.estado === descripcion).map((item2, index2) => {
                           const {text} = item2 ||{};   
                           return( 
-                                      
-                            
-                            <Draggable key={text} draggableId={text} index={index2} className="align-center"
-                            >
+                            <Draggable key={text} draggableId={text} index={index2} className="align-center">
                               {(draggableProvided) => (
                                 <>
-                              
-                                    <li
-                                      {...draggableProvided.draggableProps}
+                                  <li
+                                    {...draggableProvided.draggableProps}
                                       ref={draggableProvided.innerRef}
-                                      {...draggableProvided.dragHandleProps
-                                      }
+                                    {...draggableProvided.dragHandleProps
+                                    }
                                       className={"task-item-"+(descripcion==="Sin Realizar"?"todo":
                                       (descripcion==="En Proceso"?"doing":"done"))                                      
-                                      }
-                                    >
-                                      
-                                      {text}
-                                    
-                                      </li>    
-                                     
-                                     </>   
-                              )}   
-                                            
-                            </Draggable>
-                             
-                             
+                                    }
+                                  >  
+                                    {text}
+                                  </li> 
+                                 </>   
+                              )}            
+                            </Draggable>                             
                           )                
                         })}
                         {droppableProvided.placeholder}
                       </ul>
                     )}
-                  </Droppable>
-                
-                </Col>
-                
-                  )
-                })}
-            </DragDropContext>
-      
+                </Droppable>
+              </Col>
+            )
+          })}
+        </DragDropContext>      
       </Row>
     </>
   )

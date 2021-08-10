@@ -2,8 +2,7 @@ import {
     GET_TASKS,
     SET_TASKS,
     ADD_TASKS,
-    REORDER,
-    DELETE_TASK,
+    REORDER,  
     
   } from '../actions';
   
@@ -32,13 +31,6 @@ import {
       type: REORDER,
       payload : {source, destination, draggableId}
     };
-  };
-
-  export const deleteTask = (payload: any) => {
-    return { 
-      type: DELETE_TASK,
-      payload,
-    };
-  };
+  };  
  
  
