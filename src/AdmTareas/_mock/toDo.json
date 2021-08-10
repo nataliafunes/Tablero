@@ -1,0 +1,34 @@
+{
+    "toDoTasks" : [
+        {          
+        "text": "Componente Impresion",
+        "estado" : "Sin Realizar"
+        },
+        {       
+        "text": "Pasaje a Test",
+        "estado" : "En Proceso"
+        },
+        {        
+        "text": "Abm Cuentas",
+        "estado" : "Realizado"
+        },
+        {       
+        "text": "Mail de usuario",
+        "estado" : "En Proceso"
+        },
+        {       
+        "text": "Error de Produccion",
+        "estado" : "Realizado"
+        },
+        {       
+        "text": "Componente Cliente",
+        "estado" : "Sin Realizar"
+        },   
+        {        
+        "text": "Error Testeo",
+        "estado" : "Sin Realizar"
+        }
+            
+    ]
+}
+
