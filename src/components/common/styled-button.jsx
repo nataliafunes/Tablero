@@ -11,13 +11,16 @@ import {Button} from 'reactstrap';
     border-radius: 50%;
     cursor: pointer;
     text-color: black;
-    align-items: center;   
+    align-items: center;  
+    font-weight-bold; 
+    &:hover {
+      background-color: #4CAF50;
+      color: black;
+    }
+    &:active {
+      background-color: #4CAF50 !important;
+      color: black;
   `;
   export default StyleButton;
 
- /* &:hover {
-    background-color: red;
-    color: black;
-  }
-  &:active {
-    background-color: red !important;* */
+ 

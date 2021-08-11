@@ -11,13 +11,14 @@ const ModalNuevaTarea = ({
   const [descripcion, setDescripcion] = useState();
   const dispatch = useDispatch();
 
-  const handleClose = () => {
+  const handleClose = () => {   
     handlerOpenModal(false);
+    setDescripcion('');
   };
 
   const handleAgregar = () =>{    
       dispatch(addTasks({text: descripcion, estado: "Sin Realizar"}));
-      handlerOpenModal(false); 
+      handleClose(); 
   };
   
   const handleValue = (e) =>{

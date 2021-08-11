@@ -8,7 +8,7 @@ export const TituloTexto = styled.span`
   margin: 0.5rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  margin-top: 25px; 
+  margin-top: 25px;   
 `;
 
 
