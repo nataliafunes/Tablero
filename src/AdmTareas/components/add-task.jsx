@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Input, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from 'reactstrap';
 import { addTasks } from '../../redux/Adm-tareas/action.ts';
 import {TituloTexto} from '../../components/common/titulo';
@@ -11,13 +11,17 @@ const ModalNuevaTarea = ({
   const [descripcion, setDescripcion] = useState();
   const dispatch = useDispatch();
 
+  const {
+    dataFiltered
+  } = useSelector((state) => state.admTareasReducer);
+
   const handleClose = () => {   
     handlerOpenModal(false);
     setDescripcion('');
   };
 
   const handleAgregar = () =>{    
-      dispatch(addTasks({text: descripcion, estado: "Sin Realizar"}));
+      dispatch(addTasks({text: descripcion, estado: "Sin Realizar", order:dataFiltered.length}));
       handleClose(); 
   };
   

@@ -17,28 +17,29 @@ import {
     return dataEstado;  
   };
     
-  const changeEstado = ( destination:any, draggableId:any, dataFiltrada:any)=>{  
+  const changeEstado = (index:any, dataFiltrada:any, estado:any)=>{
+      const {text} = index;      
       dataFiltrada.map(function(item:any){
-        const {text} = item;       
-        if(text === draggableId){         
-          item.estado = destination.droppableId;
+        if(item.text === text){         
+          item.estado = estado;
         }           
       });
       return dataFiltrada;
   };
-  
-  const ReOrdenar = ( source : any, destination:any, draggableId:any,  dataFiltrada:any) => {     
+
+  const OrderData = (list:any, startIndex:any, endIndex:any) => {
+    const result = [...list];
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    return result;
+  };
+
+  const ReOrdenar = ( source : any, destination:any, draggableId:any,  dataFiltrada:any) => { 
     let dataOrder = [...dataFiltrada];
-    const direction = dataOrder.filter((i:any) =>i.estado ===destination.droppableId);
-    const directionIndex = destination.index;
-    const item = (direction.length===0 ? 1 : dataOrder.findIndex((i:any) => i.text === direction[directionIndex].text));
-    if (source.droppableId !== destination.droppableId){
-      dataOrder = changeEstado( destination,draggableId, dataFiltrada);      
-    }     
-    const remove = dataOrder.filter((i:any) =>i.text ===draggableId);
-    const dataReducida = dataOrder.filter((i:any) =>i.text !==draggableId);  
-    dataReducida.splice(source.droppableId !== destination.droppableId? item -1: item ,0, remove[0]);    
-    return dataReducida;   
+    const itemRemove = dataFiltrada.filter((i:any) =>i.text ===draggableId);   
+    changeEstado(itemRemove[0], dataOrder, destination.droppableId); 
+    OrderData(dataOrder, source.index, destination.index);
+    return  dataOrder;   
   };
 
   export default (state = INIT_STATE, action: any) => {
@@ -49,7 +50,7 @@ import {
         return {  ...state,
           dataFiltered: [...state.dataFiltered, action.payload]
       } 
-      case REORDER:       
+     case REORDER:       
         const {source, destination , draggableId} = action.payload;       
         const data = state.dataFiltered;
         return { ...state,  dataFiltered: ReOrdenar(source, destination, draggableId, data)};      

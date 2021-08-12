@@ -1,8 +1,8 @@
-import { useEffect  } from "react";
+import { useEffect } from "react";
 import {useSelector, useDispatch } from 'react-redux';
 import { Row, Col} from 'reactstrap';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { getTasks, reOrder } from '../../redux/Adm-tareas/action.ts';
+import { getTasks, reOrder} from '../../redux/Adm-tareas/action.ts';
 
 const ConteinerTasks= () => {
   const dispatch = useDispatch(); 
@@ -18,13 +18,13 @@ const ConteinerTasks= () => {
     }                                
     if ( source.index === destination.index && source.droppableId === destination.droppableId) {
       return;
-    }     
+    }    
     dispatch(reOrder( source, destination, draggableId));
   } 
 
   useEffect(() => {
     dispatch(getTasks());
-  }, [dispatch]);
+  }, [dispatch]); 
 
   return (
     <>
